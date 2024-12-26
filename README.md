@@ -11,6 +11,7 @@ Ensure that the following are installed:
 - **MongoDB**: Install MongoDB locally or use a cloud instance like [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
 - **Selenium WebDriver**: The `selenium-webdriver` npm package will be used for web scraping.
 - **Google Chrome Driver**: Install ChromeDriver to allow Selenium to control Google Chrome.
+- **ProxyMesh**: Login to ProxyMesh, and use those credentials in the .env file. Also the free URL starting with 'us.proxymesh.com' with Port number must be used in .env file.
 
 For **Ubuntu** users, follow these steps to install dependencies:
 
