@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Trends Scraper</title>
+</head>
+
+<body>
+    <h1>Twitter Trends Scraper</h1>
+    <a href="#" id="run-script">Click here to run the script</a>
+    <div id="results"></div>
+    <script>
+        document.getElementById('run-script').addEventListener('click', async (event) => {
+            event.preventDefault(); 
+
+            try {
+                const response = await fetch('/run-scraper');
+                const data = await response.json();
+
+                if (data.error) {
+                    document.getElementById('results').innerHTML = '<h2>Error:</h2><p>' + data.error + '</p>';
+                } else {
+                    const trendsHtml = data.trends.map(trend => '<li>' + trend + '</li>').join('');
+
+                    const endTime = new Date(data.endTime);
+                    const formattedEndTime = endTime.toLocaleString('en-US', {
+                        weekday: 'long', 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric', 
+                        hour: 'numeric', 
+                        minute: 'numeric', 
+                        second: 'numeric', 
+                        hour12: true
+                    });
+
+                    document.getElementById('results').innerHTML = `
+                        <h2>These are the most happening topics as of ${formattedEndTime}:</h2>
+                        <ol>${trendsHtml}</ol>
+                        <p>The IP address used for this query was <strong>${data.ipAddress}</strong>.</p>
+                    `;
+
+                    document.getElementById('run-script').textContent = 'Click here to run the script again';
+                }
+            } catch (error) {
+                document.getElementById('results').innerHTML = '<h2>Error:</h2><p>' + error.message + '</p>';
+            }
+        });
+    </script>
+</body>
+
+</html>
+
