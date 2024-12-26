@@ -22,7 +22,7 @@ async function scrapeX() {
     const uniqueId = uuidv4();
 
     const proxy = `http://${PROXY_USER}:${PROXY_PASS}@${PROXY_HOST}:${PROXY_PORT}`;
-    const profilePath = '/home/rohangupta/.config/google-chrome';
+    const profilePath = process.env.PROFILE_PATH;
     const profileName = 'Profile 1'; // Use the specific profile name
 
     const options = new Options();
