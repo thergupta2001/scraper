@@ -18,7 +18,7 @@ app.get('/run-scraper', async (req, res) => {
         
         if (os.platform() === 'win32') {
             // For windows, ensure that the Chrome executable path is correct
-            // Replace <Username> with your actual username in PC
+            // Replace <Username> with your actual username in PC, replace <Username> with process.env.PC_USERNAME here, like in Linux
             const chromePath = `"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"`;
             const userDataDir = `"C:\\Users\\<Username>\\AppData\\Local\\Google\\Chrome\\User Data"`;
             chromeCommand = `${chromePath} --remote-debugging-port=9222 --user-data-dir=${userDataDir} --profile-directory="Profile 1"`;
